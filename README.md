@@ -6,9 +6,13 @@ This repository contains the full implementation of **ZIP** paper (accepted to [
 
 ## Code Structure
 
-## Prerequisites
-
 ## Installation
+
+1. **Install dependencies:**
+     ```bash
+     conda create -n zip python=3.9
+     conda activate zip
+     ```
 
 ## How to Run
 
