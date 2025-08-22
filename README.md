@@ -59,13 +59,70 @@ Before running the scripts, ensure that you have the following installed:
 
 ## How to Run
 
-1. **Set up environment and dependencies:**:
+1. **Create the environment and install Python dependencies:**
    ```bash
    conda create -n zip python=3.9 -y
    conda activate zip
-   pip install -r requirements.txt
+   ```
+   ```bash
+   python -m pip install -U torch numpy scipy pandas scikit-learn sympy
+   chmod +x precompute.sh fig1.sh table1_2.sh table3.sh table4.sh table5.sh table6.sh table7.sh
    ```
 
+2. **Precompute piecewise polynomial approximations for the target non-linear functions**
+   ```bash
+   ./precompute.sh
+   ```
+### Reproduce the Paper Results
+
+> **Reproducibility note (hardware & parallelism).**  
+> To match the paper’s numbers, use hardware comparable to our reference machine: **48 CPU cores** (Intel® Xeon® Platinum 8360Y, 2.40 GHz) and **1 TB RAM**.  
+> The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
+> When running, ensure the machine is otherwise idle to obtain consistent timings.
+
+1. **Generate Figure 1:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./fig1.sh
+   ```
+3. **Generate Table 1 & 2:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table1_2.sh
+   ```
+5. **Generate Table 3:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table3.sh
+   ```
+6. **Generate Table 4:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table4.sh
+   ```
+8. **Generate Table 5:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table5.sh
+   ```
+10. **Generate Table 6:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table6.sh
+   ```
+11. **Generate Table 7:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+
+   ```bash
+   ./table7.sh
+   ```
+   
 ## Artifact Documentation
 
 ## Acknowledgments
