@@ -81,7 +81,7 @@ Before running the scripts, ensure that you have the following installed:
 > When running, ensure the machine is otherwise idle to obtain consistent timings.
 
 1. **Generate Figure 1:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+   > **Memory requirement:** **51 GB** RAM (peak usage)
 
    ```bash
    ./fig1.sh
