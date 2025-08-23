@@ -81,9 +81,9 @@ Before running the scripts, ensure that you have the following installed:
    - The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
    - When running, ensure the machine is otherwise idle to obtain consistent timings.
 
-1. **Generate Figure 1:**
+1. **Generate Figure 1:** ✅
    > **Memory requirement:** **51 GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **End-to-end runtime:** **35 min** (wall-clock)   
    ```bash
    ./fig1.sh
    ```
