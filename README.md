@@ -75,49 +75,56 @@ Before running the scripts, ensure that you have the following installed:
    ```
 ### Reproduce the Paper Results
 
-> **Reproducibility note:**  
-> To match the paper’s numbers, use hardware comparable to our reference machine: **48 CPU cores** (Intel® Xeon® Platinum 8360Y, 2.40 GHz) and **1 TB RAM**.  
-> The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
-> When running, ensure the machine is otherwise idle to obtain consistent timings.
+- **Reproducibility note:**  
+   - To match the paper’s numbers, use hardware comparable to our reference machine:
+      - **48 CPU cores** (Intel® Xeon® Platinum 8360Y, 2.40 GHz) and **1 TB RAM**.  
+   - The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
+   - When running, ensure the machine is otherwise idle to obtain consistent timings.
 
 1. **Generate Figure 1:**
-   > **Memory requirement:** **51 GB** RAM (peak usage)
-
+   > **Memory requirement:** **51 GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
    ```bash
    ./fig1.sh
    ```
-3. **Generate Table 1 & 2:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+2. **Generate Table 1 & 2:** ✅
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table1_2.sh
    ```
-5. **Generate Table 3:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+3. **Generate Table 3:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table3.sh
    ```
-6. **Generate Table 4:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+4. **Generate Table 4:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table4.sh
    ```
-8. **Generate Table 5:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+5. **Generate Table 5:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table5.sh
    ```
-10. **Generate Table 6:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+6. **Generate Table 6:** 
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table6.sh
    ```
-11. **Generate Table 7:**
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)
+7. **Generate Table 7:**
+   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table7.sh
