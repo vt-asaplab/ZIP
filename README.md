@@ -88,8 +88,8 @@ Before running the scripts, ensure that you have the following installed:
    ./fig1.sh
    ```
 2. **Generate Table 1 & 2:** ✅
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** **250 GB** RAM (peak usage)   
+   > **End-to-end runtime:** **80 min** (wall-clock)   
 
    ```bash
    ./table1_2.sh
