@@ -85,49 +85,50 @@ Before running the scripts, ensure that you have the following installed:
    - When running, ensure the machine is otherwise idle to obtain consistent timings.
 
 1. **Generate Figure 1:** ✅
-   > **Memory requirement:** **51 GB** RAM (peak usage)   
-   > **End-to-end runtime:** **35 min** (wall-clock)   
+   > **Memory requirement:** ≈ **51 GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **35 min** (wall-clock)   
    ```bash
    ./scripts/fig1.sh
    ```
 2. **Generate Table 1 & 2:** ✅
-   > **Memory requirement:** **250 GB** RAM (peak usage)   
-   > **End-to-end runtime:** **80 min** (wall-clock)   
+   > **Memory requirement:** ≈ **250 GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **80 min** (wall-clock)   
 
    ```bash
    ./scripts/table1_2.sh
    ```
 3. **Generate Table 3:** ⏳ In progress
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
 
    ```bash
    ./scripts/table3.sh
    ```
 4. **Generate Table 4:** ⏳ In progress
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
 
    ```bash
    ./scripts/table4.sh
    ```
 5. **Generate Table 5:** ⏳ In progress
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
 
    ```bash
    ./scripts/table5.sh
    ```
 6. **Generate Table 6:** ⏳ In progress
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **12 min** (wall-clock)   
+   > **Reported metric:** Table 6 reports the **average over 10 runs** under identical settings.
 
    ```bash
    ./scripts/table6.sh
    ```
 7. **Generate Table 7:** ⏳ In progress
-   > **Memory requirement:** **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
 
    ```bash
    ./scripts/table7.sh
