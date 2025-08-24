@@ -68,7 +68,7 @@ Before running the scripts, ensure that you have the following installed:
    conda activate zip
    ```
    ```bash
-   python -m pip install -U torch numpy scipy pandas scikit-learn sympy tqdm
+   python -m pip install -U torch numpy scipy pandas scikit-learn sympy tqdm torchvision ray
    chmod +x scripts/*.sh
    ```
 
