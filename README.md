@@ -69,12 +69,12 @@ Before running the scripts, ensure that you have the following installed:
    ```
    ```bash
    python -m pip install -U torch numpy scipy pandas scikit-learn sympy
-   chmod +x precompute.sh fig1.sh table1_2.sh table3.sh table4.sh table5.sh table6.sh table7.sh
+   chmod +x scripts/*.sh
    ```
 
 2. **Precompute piecewise polynomial approximations for the target non-linear functions**
    ```bash
-   chmod +x scripts/*.sh
+   ./scripts/precompute.sh
    ```
 ### Reproduce the Paper Results
 
