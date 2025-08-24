@@ -1,10 +1,13 @@
 # Zero-Knowledge AI Inference with High Precision
 
-This repository contains the full implementation of **ZIP** paper (accepted to [**ACM CCS 2025**](https://www.sigsac.org/ccs/CCS2025/)). The manuscript will be available online shortly.
+This repository contains the full implementation of **ZIP** paper (accepted to [**ACM CCS 2025**](https://www.sigsac.org/ccs/CCS2025/)).       
+The manuscript will be available online shortly.
 
 > **Warning**: This code is a research prototype intended for proof-of-concept purposes only and is not ready for production use.
 
 ## Code Structure
+
+⏳ In progress
 
 ## Prerequisites
 Before running the scripts, ensure that you have the following installed:
@@ -94,35 +97,35 @@ Before running the scripts, ensure that you have the following installed:
    ```bash
    ./table1_2.sh
    ```
-3. **Generate Table 3:**
+3. **Generate Table 3:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table3.sh
    ```
-4. **Generate Table 4:**
+4. **Generate Table 4:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table4.sh
    ```
-5. **Generate Table 5:**
+5. **Generate Table 5:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table5.sh
    ```
-6. **Generate Table 6:** 
+6. **Generate Table 6:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
    ./table6.sh
    ```
-7. **Generate Table 7:**
+7. **Generate Table 7:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
@@ -133,4 +136,11 @@ Before running the scripts, ensure that you have the following installed:
 ## Artifact Documentation
 
 ## Acknowledgments
+This project uses [gnark](https://github.com/Consensys/gnark) for PLONK proving/verification and [NFGen](https://github.com/Fannxy/NFGen) (in `src/piecewise_polynomial_approximation/NFGen/`) to precompute piecewise-polynomial approximations of non-linear functions.
+
+## Citing
+
+If you use this repository or build upon our work, we would appreciate it if you cite our paper using the following BibTeX entry:
+
+⏳ In progress
 
