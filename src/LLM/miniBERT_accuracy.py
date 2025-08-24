@@ -333,10 +333,10 @@ if __name__ == "__main__":
         train_epoch(fp_model, train_loader, criterion, optimizer, ep)
         eval_fp(fp_model, val_loader, f"ZIP (IEEE-754 double-precision) after epoch {ep}")
 
-    fp_acc = eval_fp(fp_model, val_loader, "Final FP64")
+    fp_acc = eval_fp(fp_model, val_loader, "Final ZIP (IEEE-754 double-precision)")
 
     # Build fixed point model
-    print("\nConverting to strict fixed‑point (F=16)…")
+    print("\nConverting to strict fixed-point (F=16)…")
     fxp_model = FXPBertMiniSST2(fp_model).to(DEVICE)
 
     fxp_acc = eval_fxp(fxp_model, val_loader, "Baseline (w/FP) (fixed-point)")
