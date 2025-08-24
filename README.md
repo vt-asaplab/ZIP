@@ -74,7 +74,7 @@ Before running the scripts, ensure that you have the following installed:
 
 2. **Precompute piecewise polynomial approximations for the target non-linear functions**
    ```bash
-   ./precompute.sh
+   chmod +x scripts/*.sh
    ```
 ### Reproduce the Paper Results
 
@@ -88,49 +88,49 @@ Before running the scripts, ensure that you have the following installed:
    > **Memory requirement:** **51 GB** RAM (peak usage)   
    > **End-to-end runtime:** **35 min** (wall-clock)   
    ```bash
-   ./fig1.sh
+   ./scripts/fig1.sh
    ```
 2. **Generate Table 1 & 2:** ✅
    > **Memory requirement:** **250 GB** RAM (peak usage)   
    > **End-to-end runtime:** **80 min** (wall-clock)   
 
    ```bash
-   ./table1_2.sh
+   ./scripts/table1_2.sh
    ```
 3. **Generate Table 3:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
-   ./table3.sh
+   ./scripts/table3.sh
    ```
 4. **Generate Table 4:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
-   ./table4.sh
+   ./scripts/table4.sh
    ```
 5. **Generate Table 5:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
-   ./table5.sh
+   ./scripts/table5.sh
    ```
 6. **Generate Table 6:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
-   ./table6.sh
+   ./scripts/table6.sh
    ```
 7. **Generate Table 7:** ⏳ In progress
    > **Memory requirement:** **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** **ZZ min** (wall-clock)   
 
    ```bash
-   ./table7.sh
+   ./scripts/table7.sh
    ```
    
 ## Artifact Documentation
