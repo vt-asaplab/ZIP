@@ -118,8 +118,8 @@ Before running the scripts, ensure that you have the following installed:
    ```bash
    ./scripts/table5.sh
    ```
-6. **Generate Table 6:** ⏳ In progress
-   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
+6. **Generate Table 6:** ✅
+   > **Memory requirement:** ≈ **5 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **12 min** (wall-clock)   
    > **Reported metric:** Table 6 reports the **average over 10 runs** under identical settings.
 
