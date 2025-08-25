@@ -31,14 +31,17 @@ Before running the scripts, ensure that you have the following installed:
 ### Installing Rust and Cargo
 
    ```bash
+   # Install rustup (Rust toolchain manager)
    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   . "$HOME/.cargo/env"
-   rustup toolchain install nightly-2023-06-26
-   rustup default nightly-2023-06-26  # Set this version globally
-
+   . "$HOME/.cargo/env"     # load cargo into your shell
+   
+   # Install and set stable Rust globally
+   rustup toolchain install 1.80.1
+   rustup default 1.80.1
+   
    # Verify
-   rustc --version  # Verify the Rust compiler version
-   cargo --version  # Verify the Cargo version
+   rustc --version           # should print: rustc 1.80.1 (or newer)
+   cargo --version
    ```
 
 ### Installing Go
