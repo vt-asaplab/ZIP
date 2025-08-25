@@ -98,8 +98,8 @@ Before running the scripts, ensure that you have the following installed:
    ./scripts/table1_2.sh
    ```
 3. **Generate Table 3:** ⏳ In progress
-   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
+   > **Memory requirement:** ≈ **7.4 GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **80 min** (wall-clock)   
 
    ```bash
    ./scripts/table3.sh
