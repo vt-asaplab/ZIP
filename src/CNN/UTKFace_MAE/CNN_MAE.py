@@ -367,9 +367,9 @@ def train_model():
     trained_model = train(model, batch_size, optimizer, loss_fn, model_type, train_=train_df, test_=test_df, num_epochs=epoch_ct)
     
     if activation_flag == 0:
-        print("Test MAE with native ELU activation")
+        print("\n\nTest MAE with native ELU activation:")
     else: 
-        print("Test MAE with piecewise polynomial ELU activation")
+        print("\n\nTest MAE with piecewise polynomial ELU activation:")
 
     mae_double = testMeanAbsoluteError(trained_model, test_df, 1, 0)
     print(f"\nZIP (IEEE-754 double-precision): {mae_double}")

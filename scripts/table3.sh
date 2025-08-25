@@ -23,9 +23,7 @@ fi
 echo ""
 echo "Running with native ELU activation"
 python CNN_MAE.py 0 110
-echo "Finished run"
 
 echo ""
 echo "Running with piecewise polynomial approximation of ELU activation"
 python CNN_MAE.py 1 110
-echo "Finished run"
