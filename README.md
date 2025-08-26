@@ -7,7 +7,18 @@ The manuscript will be available online shortly.
 
 ## Code Structure
 
-⏳ In progress
+```text
+ZIP/   
+├── scripts/  
+└── src/  
+    ├── CNN/
+    ├── LLM/
+    ├── piecewise_polynomial_approximation
+    │   ├── NFGen/
+    │   └── precomputed_lookup_tables_ieee754/
+    └── proof_generation/  
+        └── ZIP_proof_generation/  
+```
 
 ## Prerequisites
 Before running the scripts, ensure that you have the following installed:
