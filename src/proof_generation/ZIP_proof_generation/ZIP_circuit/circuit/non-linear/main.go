@@ -243,7 +243,7 @@ func main() {
 		}
 	*/
 
-	tableDir := "./precomputed_lookup_tables_ieee754_hex"
+	tableDir := "../../../precomputed_lookup_tables_ieee754_hex"
 	intervalsPath := filepath.Join(tableDir, fmt.Sprintf("%s_intervals_ieee754.txt", ACTIVATION))
 	coeffsPath := filepath.Join(tableDir, fmt.Sprintf("%s_coefficients_ieee754.txt", ACTIVATION))
 

@@ -12,7 +12,7 @@ for act in elu selu gelu softmax layernorm; do
 done
 
 src="../src/piecewise_polynomial_approximation/precomputed_lookup_tables_ieee754_hex"
-dst="../src/proof_generation/ZIP_proof_generation/ZIP_circuit/circuit/non-linear"
+dst="../src/proof_generation/ZIP_proof_generation"
 
 mkdir -p -- "$dst"
 rm -rf -- "$dst/precomputed_lookup_tables_ieee754_hex"
