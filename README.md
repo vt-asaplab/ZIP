@@ -119,12 +119,16 @@ Before running the scripts, ensure that you have the following installed:
    ./scripts/table3.sh
    ```
 4. **Generate Table 4:** ⏳ In progress
-   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
+   > **Memory requirement:** < **1 GB** RAM (peak usage)   
+   > **End-to-end runtime:** < **1 sec** (wall-clock)   
 
    ```bash
-   ./scripts/table4.sh
-   ```
+   # Quiet mode (recommended): runs everything silently and prints only the totals.
+   ./scripts/table4.sh 1
+
+   # Verbose mode: shows full logs from Python/Go/Rust plus the totals at the end.
+   ./scripts/table4.sh 0
+   ```   
 5. **Generate Table 5:** ⏳ In progress
    > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
