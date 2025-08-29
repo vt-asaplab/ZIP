@@ -16,8 +16,17 @@ ZIP/
     ├── piecewise_polynomial_approximation
     │   ├── NFGen/
     │   └── precomputed_lookup_tables_ieee754/
-    └── proof_generation/  
-        └── ZIP_proof_generation/  
+    └── proof_generation  
+        ├── caulk/
+        ├── ZIP_proof_generation
+        │   ├── precomputed_lookup_tables_ieee754_hex/    
+        │   ├── ZIP_circuit
+        │   │   └── circuit      
+        │   │       ├── linear/
+        │   │       └── non-linear/
+        │   └── ZIP_lookup
+        │       └── examples/
+        └── zk-Location/
 ```
 
 ## Prerequisites
