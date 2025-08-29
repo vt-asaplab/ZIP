@@ -167,10 +167,10 @@ Before running the scripts, ensure that you have the following installed:
 
 ## Acknowledgments
 This project builds upon and integrates several existing open-source implementations:    
-    - **[gnark](https://github.com/Consensys/gnark)**: Used for PLONK proving and verification. 
-    - **[NFGen](https://github.com/Fannxy/NFGen)**: Incorporated in `src/piecewise_polynomial_approximation/NFGen/` to precompute piecewise-polynomial approximations of non-linear functions.  
-    - **[zk-Location](https://github.com/tumberger/zk-Location)**: Incorporated in `src/proof_generation/zk-Location` to prove IEEE-754–compliant **linear** operations.   
-    - **[caulk](https://github.com/caulk-crypto/caulk)**: Integrated into `src/proof_generation/caulk`, and we modified specific files to enable compatibility of its multi-lookup arguments with the ZIP framework.
+- **[gnark](https://github.com/Consensys/gnark)**: Used for PLONK proving and verification. 
+- **[NFGen](https://github.com/Fannxy/NFGen)**: Incorporated in `src/piecewise_polynomial_approximation/NFGen/` to precompute piecewise-polynomial approximations of non-linear functions.  
+- **[zk-Location](https://github.com/tumberger/zk-Location)**: Incorporated in `src/proof_generation/zk-Location` to prove IEEE-754–compliant **linear** operations.   
+- **[caulk](https://github.com/caulk-crypto/caulk)**: Integrated into `src/proof_generation/caulk`, and we modified specific files to enable compatibility of its multi-lookup arguments with the ZIP framework.   
 
 We gratefully acknowledge the authors and maintainers of these projects for making their work available to the community.
 
