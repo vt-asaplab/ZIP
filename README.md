@@ -39,6 +39,22 @@ Before running the scripts, ensure that you have the following installed:
 
 > Note: The package commands below use Debian/Ubuntu (```apt-get```). For Fedora/RHEL, replace with ```dnf/yum```.
 
+## ⚠️ Git LFS Required (before cloning)
+
+This repo uses **Git Large File Storage (LFS)** for the SRS files in  `src/proof_generation/caulk/srs` (~800 MB total).   
+
+```bash
+# Install Git LFS **before** you clone: 
+sudo apt-get install git-lfs
+
+# Initialize LFS hooks
+git lfs install
+
+# Normal clone
+git clone https://github.com/vt-asaplab/ZIP.git
+cd ZIP
+```
+
 ## Installation
 
 ### Installing Python:
