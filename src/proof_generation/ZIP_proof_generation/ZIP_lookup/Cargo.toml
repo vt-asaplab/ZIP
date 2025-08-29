@@ -1,0 +1,14 @@
+[package]
+name = "zip_lookup"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+caulk = { path = "../../caulk" }
+
+ark-bls12-381 = { version = "^0.3.0", features = ["std"] }
+ark-poly        = { version = "^0.3.0", default-features = false }
+ark-poly-commit = { version = "^0.3.0", default-features = false }
+ark-std         = { version = "^0.3.0", default-features = false }
+rand = "0.8.5"
+
