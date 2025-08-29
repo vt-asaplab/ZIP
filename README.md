@@ -127,7 +127,7 @@ Before running the scripts, ensure that you have the following installed:
    ```bash
    ./scripts/table3.sh
    ```
-4. **Generate Table 4:** ⏳ In progress
+4. **Generate Table 4:** ✅
    > **Memory requirement:** < **1 GB** RAM (peak usage)   
    > **End-to-end runtime:** < **1 sec** (wall-clock)   
 
