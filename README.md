@@ -123,11 +123,13 @@ Before running the scripts, ensure that you have the following installed:
    > **End-to-end runtime:** < **1 sec** (wall-clock)   
 
    ```bash
+   ./scripts/table4.sh <mode> [values_dir] ["activations"]
+
    # Quiet mode (recommended): runs everything silently and prints only the totals.
-   ./scripts/table4.sh 1
+   ./scripts/table4.sh 1 y_yprime_examples gelu
 
    # Verbose mode: shows full logs from Python/Go/Rust plus the totals at the end.
-   ./scripts/table4.sh 0
+   ./scripts/table4.sh 0 y_yprime_examples gelu
    ```   
 5. **Generate Table 5:** ⏳ In progress
    > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
