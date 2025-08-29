@@ -231,6 +231,121 @@ func loadUint64sFromFile(path string) ([]uint64, error) {
 	return out, nil
 }
 
+func parseUint64Token(t string) (uint64, error) {
+	t = strings.TrimSpace(t)
+	if strings.HasPrefix(t, "0x") || strings.HasPrefix(t, "0X") {
+		return strconv.ParseUint(t[2:], 16, 64)
+	}
+	return strconv.ParseUint(t, 10, 64)
+}
+
+func parseIndexToken(t string) (int, error) {
+	t = strings.TrimSpace(t)
+	if t == "" {
+		return 0, fmt.Errorf("empty index token")
+	}
+	var u uint64
+	var err error
+	if strings.HasPrefix(t, "0x") || strings.HasPrefix(t, "0X") {
+		u, err = strconv.ParseUint(t[2:], 16, 64)
+	} else {
+		u, err = strconv.ParseUint(t, 10, 64)
+	}
+	if err != nil {
+		return 0, err
+	}
+	if u > uint64(^uint(0)>>1) {
+		return 0, fmt.Errorf("index too large for int: %s", t)
+	}
+	return int(u), nil
+}
+
+func loadPairsAndThirds(path string, need int) ([]uint64, []uint64, []int, error) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return nil, nil, nil, err
+	}
+	lines := strings.Split(string(b), "\n")
+
+	Y := make([]uint64, 0, need)
+	Yp := make([]uint64, 0, need)
+	thirds := make([]int, 0, need)
+
+	for _, ln := range lines {
+		ln = strings.TrimSpace(ln)
+		if ln == "" || strings.HasPrefix(ln, "#") {
+			continue
+		}
+		parts := strings.Split(ln, ",")
+		if len(parts) < 3 {
+			return nil, nil, nil, fmt.Errorf("bad line (need 3 values Y, Y', third): %q", ln)
+		}
+		y, err := parseUint64Token(parts[0])
+		if err != nil {
+			return nil, nil, nil, fmt.Errorf("parse Y in %q: %w", ln, err)
+		}
+		yp, err := parseUint64Token(parts[1])
+		if err != nil {
+			return nil, nil, nil, fmt.Errorf("parse Y' in %q: %w", ln, err)
+		}
+		t, err := parseIndexToken(parts[2])
+		if err != nil {
+			return nil, nil, nil, fmt.Errorf("parse third in %q: %w", ln, err)
+		}
+
+		Y = append(Y, y)
+		Yp = append(Yp, yp)
+		thirds = append(thirds, t)
+
+		if len(Y) == need {
+			break
+		}
+	}
+	if len(Y) < need {
+		return nil, nil, nil, fmt.Errorf("file %s has only %d triples, need %d", path, len(Y), need)
+	}
+	return Y, Yp, thirds, nil
+}
+
+func buildIndicesFromThirds(thirds []int) ([][]int, [][]int, error) {
+	if len(thirds) != NUM_INSTANCES {
+		return nil, nil, fmt.Errorf("thirds length %d != NUM_INSTANCES %d", len(thirds), NUM_INSTANCES)
+	}
+
+	lookup := make([][]int, NUM_INSTANCES)
+	rangeProof := make([][]int, NUM_INSTANCES)
+
+	for i, t := range thirds {
+		if t < 0 {
+			return nil, nil, fmt.Errorf("third at instance %d is negative: %d", i, t)
+		}
+
+		// lookup indices: t*PV_SIZE .. t*PV_SIZE + PV_SIZE-1
+		start := t * PRIVATE_VECTOR_SIZE
+		end := start + PRIVATE_VECTOR_SIZE - 1
+		if end >= TABLE_SIZE {
+			return nil, nil, fmt.Errorf("instance %d: lookup indices [%d..%d] out of TABLE_SIZE=%d", i, start, end, TABLE_SIZE)
+		}
+		l := make([]int, PRIVATE_VECTOR_SIZE)
+		for j := 0; j < PRIVATE_VECTOR_SIZE; j++ {
+			l[j] = start + j
+		}
+		lookup[i] = l
+
+		// range-proof indices: t, t+1, ..., t+(PV_PRIME_SIZE-1)
+		r := make([]int, PRIVATE_VECTOR_PRIME_SIZE)
+		for j := 0; j < PRIVATE_VECTOR_PRIME_SIZE; j++ {
+			r[j] = t + j
+		}
+		if r[len(r)-1] >= TABLE_PRIME_SIZE {
+			return nil, nil, fmt.Errorf("instance %d: range-proof last idx %d out of TABLE_PRIME_SIZE=%d", i, r[len(r)-1], TABLE_PRIME_SIZE)
+		}
+		rangeProof[i] = r
+	}
+
+	return lookup, rangeProof, nil
+}
+
 func main() {
 
 	zerolog.SetGlobalLevel(zerolog.Disabled)
@@ -267,58 +382,89 @@ func main() {
 
 	// Define the intervals and coefficients vectors
 	var (
-		privateIndices_lookup     []int
-		privateIndices_rangeProof []int
+		privateIndices_lookup     [][]int
+		privateIndices_rangeProof [][]int
 		Y_prime_ValSlice          = make([]uint64, NUM_INSTANCES)
 		Y_ValSlice                = make([]uint64, NUM_INSTANCES)
 		Delta_Val                 uint64
 	)
+	Delta_Val = DELTA_VALUE
 
 	switch ACTIVATION {
 	case "gelu":
-		privateIndices_lookup = []int{40, 41, 42, 43, 44, 45, 46, 47, 48, 49}
-		privateIndices_rangeProof = []int{4, 5}
-		for i := 0; i < NUM_INSTANCES; i++ {
-			Y_prime_ValSlice[i] = 0x3fd5cb9820000000
-			Y_ValSlice[i] = 0x3fcb9ac020000000
+		pairsPath := filepath.Join("../../../ZIP_lookup/examples", VALUES_DIR, "gelu_y_yprime.txt")
+		Ys, Yps, thirds, err := loadPairsAndThirds(pairsPath, NUM_INSTANCES)
+		if err != nil {
+			log.Fatalf("failed to load Y/Y'/third triples: %v", err)
 		}
-		Delta_Val = 0x3fb70a3d70a3d70a
+		privateIndices_lookup, privateIndices_rangeProof, err = buildIndicesFromThirds(thirds)
+		if err != nil {
+			log.Fatalf("failed to build indices from thirds: %v", err)
+		}
+		for i := 0; i < NUM_INSTANCES; i++ {
+			Y_ValSlice[i] = Ys[i]
+			Y_prime_ValSlice[i] = Yps[i]
+		}
 
 	case "selu":
-		privateIndices_lookup = []int{28, 29, 30, 31, 32, 33, 34}
-		privateIndices_rangeProof = []int{4, 5}
-		for i := 0; i < NUM_INSTANCES; i++ {
-			Y_prime_ValSlice[i] = 0x3fbd185d08d69b80
-			Y_ValSlice[i] = 0x3fbe9200b7348f63
+		pairsPath := filepath.Join("../../../ZIP_lookup/examples", VALUES_DIR, "selu_y_yprime.txt")
+		Ys, Yps, thirds, err := loadPairsAndThirds(pairsPath, NUM_INSTANCES)
+		if err != nil {
+			log.Fatalf("failed to load Y/Y'/third triples: %v", err)
 		}
-		Delta_Val = 0x3F4D7DBF487FCB92
+		privateIndices_lookup, privateIndices_rangeProof, err = buildIndicesFromThirds(thirds)
+		if err != nil {
+			log.Fatalf("failed to build indices from thirds: %v", err)
+		}
+		for i := 0; i < NUM_INSTANCES; i++ {
+			Y_ValSlice[i] = Ys[i]
+			Y_prime_ValSlice[i] = Yps[i]
+		}
 
 	case "elu":
-		privateIndices_lookup = []int{12, 13, 14, 15, 16, 17}
-		privateIndices_rangeProof = []int{2, 3}
-		for i := 0; i < NUM_INSTANCES; i++ {
-			Y_prime_ValSlice[i] = 0xc003deed79bf1b60
-			Y_ValSlice[i] = 0xbfed549cd0b8868f
+		pairsPath := filepath.Join("../../../ZIP_lookup/examples", VALUES_DIR, "elu_y_yprime.txt")
+		Ys, Yps, thirds, err := loadPairsAndThirds(pairsPath, NUM_INSTANCES)
+		if err != nil {
+			log.Fatalf("failed to load Y/Y'/third triples: %v", err)
 		}
-		Delta_Val = 0x3F4D7DBF487FCB92
+		privateIndices_lookup, privateIndices_rangeProof, err = buildIndicesFromThirds(thirds)
+		if err != nil {
+			log.Fatalf("failed to build indices from thirds: %v", err)
+		}
+		for i := 0; i < NUM_INSTANCES; i++ {
+			Y_ValSlice[i] = Ys[i]
+			Y_prime_ValSlice[i] = Yps[i]
+		}
 
-	case "exp":
-		privateIndices_lookup = []int{0, 1, 2, 3, 4, 5, 6}
-		privateIndices_rangeProof = []int{0, 1}
-		for i := 0; i < NUM_INSTANCES; i++ {
-			Y_prime_ValSlice[i] = 0xC01D000000000000
-			Y_ValSlice[i] = 0x3F47455FE31DFDFF
+	case "softmax":
+		pairsPath := filepath.Join("../../../ZIP_lookup/examples", VALUES_DIR, "softmax_y_yprime.txt")
+		Ys, Yps, thirds, err := loadPairsAndThirds(pairsPath, NUM_INSTANCES)
+		if err != nil {
+			log.Fatalf("failed to load Y/Y'/third triples: %v", err)
 		}
-		Delta_Val = 0x3F826E978D4FDF3B
+		privateIndices_lookup, privateIndices_rangeProof, err = buildIndicesFromThirds(thirds)
+		if err != nil {
+			log.Fatalf("failed to build indices from thirds: %v", err)
+		}
+		for i := 0; i < NUM_INSTANCES; i++ {
+			Y_ValSlice[i] = Ys[i]
+			Y_prime_ValSlice[i] = Yps[i]
+		}
 
-	case "inv_sqrt":
-		privateIndices_lookup = []int{0, 1, 2, 3}
-		privateIndices_rangeProof = []int{0, 1}
-		for i := 0; i < NUM_INSTANCES; i++ {
-			Y_prime_ValSlice[i] = 0x3F51951842FB0C23
-			Y_ValSlice[i] = 0x403E86AC6BF671B6
+	case "layernorm":
+		pairsPath := filepath.Join("../../../ZIP_lookup/examples", VALUES_DIR, "layernorm_y_yprime.txt")
+		Ys, Yps, thirds, err := loadPairsAndThirds(pairsPath, NUM_INSTANCES)
+		if err != nil {
+			log.Fatalf("failed to load Y/Y'/third triples: %v", err)
 		}
-		Delta_Val = 0x3F826E978D4FDF3B
+		privateIndices_lookup, privateIndices_rangeProof, err = buildIndicesFromThirds(thirds)
+		if err != nil {
+			log.Fatalf("failed to build indices from thirds: %v", err)
+		}
+		for i := 0; i < NUM_INSTANCES; i++ {
+			Y_ValSlice[i] = Ys[i]
+			Y_prime_ValSlice[i] = Yps[i]
+		}
 
 	default:
 		log.Fatalf("Unsupported ACTIVATION: %q", ACTIVATION)
@@ -355,15 +501,17 @@ func main() {
 	var s_primeVecWitness [NUM_INSTANCES][PRIVATE_VECTOR_PRIME_SIZE][TABLE_PRIME_SIZE]frontend.Variable
 
 	for instance := 0; instance < NUM_INSTANCES; instance++ {
-		privateTableA := make([]uint64, len(privateIndices_lookup))
-		for i, idx := range privateIndices_lookup {
-			privateTableA[i] = publicTableC[idx]
-		}
-		for i, v := range privateTableA {
-			aVecWitness[instance][i] = frontend.Variable(v)
-		}
 
-		for j, idx := range privateIndices_lookup {
+		// ---- coefficients (table C) ----
+
+		privateTableA := make([]uint64, PRIVATE_VECTOR_SIZE)
+		for j, idx := range privateIndices_lookup[instance] {
+			privateTableA[j] = publicTableC[idx]
+		}
+		for j, v := range privateTableA {
+			aVecWitness[instance][j] = frontend.Variable(v)
+		}
+		for j, idx := range privateIndices_lookup[instance] {
 			for i := 0; i < TABLE_SIZE; i++ {
 				if i == idx {
 					sVecWitness[instance][j][i] = frontend.Variable(1)
@@ -373,16 +521,16 @@ func main() {
 			}
 		}
 
-		privateTableA_prime := make([]uint64, len(privateIndices_rangeProof))
-		for i, idx := range privateIndices_rangeProof {
-			privateTableA_prime[i] = publicTableC_prime[idx]
-		}
-		for i, v := range privateTableA_prime {
-			a_primeVecWitness[instance][i] = frontend.Variable(v)
-		}
+		// ---- intervals (table C') ----
 
-		// For S_prime_vec: mark the lookup indices.
-		for j, idx := range privateIndices_rangeProof {
+		privateTableA_prime := make([]uint64, PRIVATE_VECTOR_PRIME_SIZE)
+		for j, idx := range privateIndices_rangeProof[instance] {
+			privateTableA_prime[j] = publicTableC_prime[idx]
+		}
+		for j, v := range privateTableA_prime {
+			a_primeVecWitness[instance][j] = frontend.Variable(v)
+		}
+		for j, idx := range privateIndices_rangeProof[instance] {
 			for i := 0; i < TABLE_PRIME_SIZE; i++ {
 				if i == idx {
 					s_primeVecWitness[instance][j][i] = frontend.Variable(1)
@@ -411,6 +559,8 @@ func main() {
 		fmt.Printf("Total number of R1CS constraints per instance (lower bound): %d\n", constraintsPerInstance)
 	} else if EVAL_MODE == "table1/2" {
 		fmt.Printf("ZIP/Table 1 - Total number of R1CS constraints: %d\n", totalConstraints)
+	} else if EVAL_MODE == "table" {
+		fmt.Printf("ZIP - Total number of R1CS constraints: %d\n", totalConstraints)
 	}
 
 	// 4) Compile
@@ -424,6 +574,8 @@ func main() {
 		fmt.Println("Total number of PlonK constraints per instance (lower bound):", constraints)
 	} else if EVAL_MODE == "table1/2" {
 		fmt.Println("ZIP/Table 2 - Total number of PlonK constraints:", ccs.GetNbConstraints())
+	} else if EVAL_MODE == "table" {
+		fmt.Println("ZIP - Total number of PlonK constraints:", ccs.GetNbConstraints())
 	}
 
 	// 5) Create witness
@@ -459,7 +611,6 @@ func main() {
 
 	// 6) Cast to *cs.SparseR1CS
 	if PROVING {
-
 		// 7) Setup SRS
 		srs, srsLagrange, err := unsafekzg.NewSRS(ccs)
 		if err != nil {
@@ -477,7 +628,8 @@ func main() {
 		if err != nil {
 			log.Fatalf("prove error: %v", err)
 		}
-		fmt.Printf("Proving time: %.3f sec\n", time.Since(tProve).Seconds())
+		proveSecs := time.Since(tProve).Seconds()
+		fmt.Printf("Proving time: %.3f sec\n", proveSecs)
 
 		var buf bytes.Buffer
 		_, err = proof.WriteTo(&buf)
@@ -490,10 +642,27 @@ func main() {
 		if err := plonk.Verify(proof, vk, pw); err != nil {
 			log.Fatalf("verify error: %v", err)
 		}
-		fmt.Printf("Verification time: %.3f sec\n", time.Since(tVerify).Seconds())
+		verifySecs := time.Since(tVerify).Seconds()
+		fmt.Printf("Verification time: %.3f sec\n", verifySecs)
 
 		fmt.Printf("Proof size: %d bytes\n", buf.Len())
 
 		fmt.Println("Proof verified successfully using PLONK with float library!")
+
+		timesPath := "../../../../../../proof_times.txt"
+		if v := os.Getenv("ZIP_TIMES_FILE"); v != "" {
+			timesPath = v
+		}
+		if err := os.MkdirAll(filepath.Dir(timesPath), 0o755); err != nil {
+			log.Printf("warn: cannot create parent dir for %s: %v", timesPath, err)
+		} else {
+			f, err := os.OpenFile(timesPath, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0o644)
+			if err != nil {
+				log.Printf("warn: cannot open %s: %v", timesPath, err)
+			} else {
+				fmt.Fprintf(f, "%.6f, %.6f\n", proveSecs, verifySecs)
+				_ = f.Close()
+			}
+		}
 	}
 }
