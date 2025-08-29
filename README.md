@@ -100,13 +100,13 @@ Before running the scripts, ensure that you have the following installed:
 
 1. **Generate Figure 1:** ✅
    > **Memory requirement:** ≈ **51 GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **40 min** (wall-clock)   
+   > **End-to-end runtime:** ≈ **45 min** (wall-clock)   
    ```bash
    ./scripts/fig1.sh
    ```
 2. **Generate Table 1 & 2:** ✅
    > **Memory requirement:** ≈ **250 GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **80 min** (wall-clock)   
+   > **End-to-end runtime:** ≈ **90 min** (wall-clock)   
 
    ```bash
    ./scripts/table1_2.sh
