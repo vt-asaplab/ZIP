@@ -15,17 +15,17 @@ ZIP/
     ├── LLM/
     ├── piecewise_polynomial_approximation
     │   ├── NFGen/
-    │   └── precomputed_lookup_tables_ieee754/
+    │   └── precomputed_lookup_tables_ieee754/              # Precomputed lookup tables (decimal)
     └── proof_generation  
         ├── caulk/
         ├── ZIP_proof_generation
-        │   ├── precomputed_lookup_tables_ieee754_hex/    
-        │   ├── ZIP_circuit
+        │   ├── precomputed_lookup_tables_ieee754_hex/      # Precomputed lookup tables (hex)
+        │   ├── ZIP_circuit 
         │   │   └── circuit      
-        │   │       ├── linear/
-        │   │       └── non-linear/
-        │   └── ZIP_lookup
-        │       └── examples/
+        │   │       ├── linear/                             # 🔶 Our linear PLONK circuits (proved via zk-Location)
+        │   │       └── non-linear/                         # 🔶 Our non-linear PLONK circuits
+        │   └── ZIP_lookup                                  # 🔶 Our multi-lookup argument
+        │       └── examples/                               # y, y′ inputs (see Eq. (2) in the paper)
         └── zk-Location/
 ```
 
