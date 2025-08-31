@@ -160,7 +160,7 @@ cd ZIP
    ```   
 5. **Generate Table 5:** ✅
    > **Memory requirement:** ≈ **100 GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **180 min** (wall-clock)   
+   > **End-to-end runtime:** ≈ **4 hr** (wall-clock)   
 
    ```bash
    ./scripts/table5.sh
