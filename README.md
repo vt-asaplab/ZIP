@@ -12,6 +12,8 @@ ZIP/
 ├── scripts/  
 └── src/  
     ├── CNN/
+    │   ├── LeNet/            
+    │   └── UTKFace_MAE/
     ├── LLM/
     ├── piecewise_polynomial_approximation
     │   ├── NFGen/
