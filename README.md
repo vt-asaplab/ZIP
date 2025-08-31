@@ -156,9 +156,9 @@ cd ZIP
    # Verbose mode: shows full logs from Python/Go/Rust plus the totals at the end.
    ./scripts/table4.sh 0 y_yprime_examples gelu
    ```   
-5. **Generate Table 5:** ⏳ In progress
-   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
+5. **Generate Table 5:** ✅
+   > **Memory requirement:** ≈ **100 GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **180 min** (wall-clock)   
 
    ```bash
    ./scripts/table5.sh
