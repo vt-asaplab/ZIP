@@ -121,7 +121,7 @@ cd ZIP
 
 - **Reproducibility note:**  
    - To match the paper’s numbers, use hardware comparable to our reference machine:
-      - **48 CPU cores** (Intel® Xeon® Platinum 8360Y, 2.40 GHz) and **1 TB RAM**.  
+      - **48 CPU cores** (Intel® Xeon® Platinum 8360Y, 2.40 GHz) and **512 GB RAM**.  
    - The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
    - When running, ensure the machine is otherwise idle to obtain consistent timings.
 
