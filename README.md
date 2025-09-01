@@ -125,27 +125,27 @@ cd ZIP
    - The underlying **PLONK** prover uses **all available CPU cores** by default, so runtimes vary with core count.  
    - When running, ensure the machine is otherwise idle to obtain consistent timings.
 
-1. **Generate Figure 1:** ✅
+1. **Generate Figure 1:**
    > **Memory requirement:** ≈ **51 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **45 min** (wall-clock)   
    ```bash
    ./scripts/fig1.sh
    ```
-2. **Generate Table 1 & 2:** ✅
+2. **Generate Table 1 & 2:**
    > **Memory requirement:** ≈ **250 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **90 min** (wall-clock)   
 
    ```bash
    ./scripts/table1_2.sh
    ```
-3. **Generate Table 3:** ✅
+3. **Generate Table 3:**
    > **Memory requirement:** ≈ **7.4 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **80 min** (wall-clock)   
 
    ```bash
    ./scripts/table3.sh
    ```
-4. **Generate Table 4:** ✅
+4. **Generate Table 4:**
    > **Memory requirement:** < **1 GB** RAM (peak usage)   
    > **End-to-end runtime:** < **1 sec** (wall-clock)   
 
@@ -158,14 +158,14 @@ cd ZIP
    # Verbose mode: shows full logs from Python/Go/Rust plus the totals at the end.
    ./scripts/table4.sh 0 y_yprime_examples gelu
    ```   
-5. **Generate Table 5:** ✅
+5. **Generate Table 5:**
    > **Memory requirement:** ≈ **100 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **4 hr** (wall-clock)   
 
    ```bash
    ./scripts/table5.sh
    ```
-6. **Generate Table 6:** ✅
+6. **Generate Table 6:**
    > **Memory requirement:** ≈ **5 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **12 min** (wall-clock)   
    > **Reported metric:** Table 6 reports the **average over 10 runs** under identical settings.
@@ -173,12 +173,16 @@ cd ZIP
    ```bash
    ./scripts/table6.sh
    ```
-7. **Generate Table 7:** ⏳ In progress
-   > **Memory requirement:** ≈ **ZZ GB** RAM (peak usage)   
-   > **End-to-end runtime:** ≈ **ZZ min** (wall-clock)   
+7. **Generate Table 7:**
+   > **Memory requirement:** ≈ **200 GB** RAM (peak usage)   
+   > **End-to-end runtime:** ≈ **3-40 hr** (wall-clock) 
 
    ```bash
+   # 1) Run the script:
    ./scripts/table7.sh
+   # 2) When prompted, enter:
+   #    0 -> prove non-linear only (~3 hr)
+   #    1 -> prove both linear + non-linear (~40 hr)
    ```
    
 ## Artifact Documentation
