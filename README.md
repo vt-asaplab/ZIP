@@ -185,8 +185,6 @@ cd ZIP
    #    1 -> prove both linear + non-linear (~40 hr)
    ```
    
-## Artifact Documentation
-
 ## Acknowledgments
 This project builds upon and integrates several existing open-source implementations:    
 - **[gnark](https://github.com/Consensys/gnark)**: Used for PLONK proving and verification. 
@@ -195,10 +193,3 @@ This project builds upon and integrates several existing open-source implementat
 - **[caulk](https://github.com/caulk-crypto/caulk)**: Integrated into `src/proof_generation/caulk`, and we modified specific files to enable compatibility of its multi-lookup arguments with the ZIP framework.   
 
 We gratefully acknowledge the authors and maintainers of these projects for making their work available to the community.
-
-## Citing
-
-If you use this repository or build upon our work, we would appreciate it if you cite our paper using the following BibTeX entry:
-
-⏳ In progress
-
