@@ -174,7 +174,7 @@ cd ZIP
    ./scripts/table6.sh
    ```
 7. **Generate Table 7:**
-   > **Memory requirement:** ≈ **200 GB** RAM (peak usage)   
+   > **Memory requirement:** ≈ **300 GB** RAM (peak usage)   
    > **End-to-end runtime:** ≈ **3-40 hr** (wall-clock) 
 
    ```bash
