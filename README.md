@@ -109,7 +109,7 @@ cd ZIP
    conda activate zip
    ```
    ```bash
-   python -m pip install -U torch numpy scipy pandas scikit-learn sympy torchvision
+   python -m pip install -U torch numpy scipy pandas scikit-learn sympy torchvision matplotlib NFGen dill
    chmod +x scripts/*.sh
    ```
 
