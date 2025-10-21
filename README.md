@@ -196,3 +196,18 @@ This project builds upon and integrates several existing open-source implementat
 - **[caulk](https://github.com/caulk-crypto/caulk)**: Integrated into `src/proof_generation/caulk`, and we modified specific files to enable compatibility of its multi-lookup arguments with the ZIP framework.   
 
 We gratefully acknowledge the authors and maintainers of these projects for making their work available to the community.
+
+## Citing
+
+If you use this repository or build upon our work, we would appreciate it if you cite our paper using the following BibTeX entry:
+
+```bibtex
+@misc{ZIP2025,
+      author = {Arman Riasi and Haodi Wang and Rouzbeh Behnia and Viet Vo and Thang Hoang},
+      title = {Zero-Knowledge {AI} Inference with High Precision},
+      howpublished = {Cryptology {ePrint} Archive, Paper 2025/1732},
+      year = {2025},
+      doi = {10.1145/3719027.3765056},
+      url = {https://eprint.iacr.org/2025/1732}
+}
+
