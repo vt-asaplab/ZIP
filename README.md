@@ -4,6 +4,8 @@ This repository contains the full implementation of [**ZIP** paper](https://epri
 
 > **Warning**: This code is a research prototype intended for proof-of-concept purposes only and is not ready for production use.
 
+<img width="517" height="200" alt="Image" src="https://github.com/user-attachments/assets/3ad5b477-8bf8-445f-b1ff-9c5174cdf9ac" />
+
 ## Code Structure
 
 ```text
