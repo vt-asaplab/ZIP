@@ -210,4 +210,8 @@ If you use this repository or build upon our work, we would appreciate it if you
       doi = {10.1145/3719027.3765056},
       url = {https://eprint.iacr.org/2025/1732}
 }
+```
+
+## Questions?
+If you have any questions or need help, please email me at [armanriasi@vt.edu](mailto:armanriasi@vt.edu).
 
