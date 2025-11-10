@@ -7,6 +7,20 @@ This repository contains the full implementation of [**ZIP** paper](https://epri
 <img src="https://github.com/user-attachments/assets/3ad5b477-8bf8-445f-b1ff-9c5174cdf9ac"
      alt="Image" width="320">
 
+## Table of Contents
+
+  - [Code Structure](#code-structure)
+  - [Prerequisites](#prerequisites)
+  - [Git LFS Required (before cloning)](#git-lfs-required-before-cloning) ⚠️
+  - [Installation](#installation)
+    - [Installing Python](#installing-python)
+    - [Installing Rust and Cargo](#installing-rust-and-cargo)
+    - [Installing Go](#installing-go)
+  - [How to Run](#how-to-run)
+    - [Reproduce the Paper Results](#reproduce-the-paper-results)
+  - [Acknowledgments](#acknowledgments)
+  - [Citing](#citing)
+  - [Questions?](#questions)
 
 ## Code Structure
 
@@ -44,9 +58,9 @@ Before running the scripts, ensure that you have the following installed:
 
 > Note: The package commands below use Debian/Ubuntu (```apt-get```). For Fedora/RHEL, replace with ```dnf/yum```.
 
-## ⚠️ Git LFS Required (before cloning)
+## Git LFS Required (before cloning)
 
-This repo uses **Git Large File Storage (LFS)** for the SRS files in  `src/proof_generation/caulk/srs` (~800 MB total).   
+⚠️ This repo uses **Git Large File Storage (LFS)** for the SRS files in  `src/proof_generation/caulk/srs` (~800 MB total).   
 
 ```bash
 # Install Git LFS **before** you clone: 
