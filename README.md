@@ -216,13 +216,12 @@ We gratefully acknowledge the authors and maintainers of these projects for maki
 If you use this repository or build upon our work, we would appreciate it if you cite our paper using the following BibTeX entry:
 
 ```bibtex
-@misc{ZIP2025,
-      author = {Arman Riasi and Haodi Wang and Rouzbeh Behnia and Viet Vo and Thang Hoang},
-      title = {Zero-Knowledge {AI} Inference with High Precision},
-      howpublished = {Cryptology {ePrint} Archive, Paper 2025/1732},
-      year = {2025},
-      doi = {10.1145/3719027.3765056},
-      url = {https://eprint.iacr.org/2025/1732}
+@inproceedings{zip2025,
+  title={Zero-Knowledge AI Inference with High Precision},
+  author={Riasi, Arman and Wang, Haodi and Behnia, Rouzbeh and Vo, Viet and Hoang, Thang},
+  booktitle={Proceedings of the 2025 ACM SIGSAC Conference on Computer and Communications Security},
+  pages={1053--1067},
+  year={2025}
 }
 ```
 
